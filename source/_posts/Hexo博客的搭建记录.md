@@ -163,7 +163,7 @@ deploy:
 
 Deployer not found: github
 
-> npm install hexo-deployer-git –save
+> npm install hexo-deployer-git --save
 
 ### 常用命令
 
