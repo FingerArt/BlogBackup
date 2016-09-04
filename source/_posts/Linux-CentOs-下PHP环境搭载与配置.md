@@ -19,6 +19,8 @@ tags:
 [root@linux ~]# yum install httpd mysql-server php //安装所需的套件
 ```
 
+<!--more-->
+
 ### Apache结构
 
 * /etc/httpd/conf/httpd.conf (主要配置文件)

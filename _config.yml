@@ -14,7 +14,7 @@ timezone:
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: http://fingerart.com
+url: http://fingerart.me
 root: /
 permalink: :year/:month/:day/:title/
 permalink_defaults:
@@ -67,6 +67,10 @@ duoshuo_shortname: fingerart
 duoshuo_share: true
 baidu_analytics: 8616bee1594305411cbb41fd828803d1
 google_analytics: UA-78199004-1
+
+search:
+  path: search.xml
+  field: post
 
 # Extensions
 ## Plugins: https://hexo.io/plugins/

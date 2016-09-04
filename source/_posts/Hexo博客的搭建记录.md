@@ -64,7 +64,7 @@ language: zh-CN
 
 # URL
 ## If your site is put in a subdirectory
-url: http://fingerart.com #你的域名
+url: http://fingerart.me #你的域名
 root: /
 permalink: :year/:month/:day/:title/
 tag_dir: tags
