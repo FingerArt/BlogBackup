@@ -9,25 +9,31 @@ tags: hexo
 
 使用npm工具安装hexo
 
-```
+``` shell
 $ npm install -g hexo
 ```
 
 初始化hexo
 
-``` 
+``` shell
 $ hexo init <folder>
+```
+
+安装Hexo依赖包，根据blog文件夹中的package.json配置下载
+
+``` shell
+$ npm install
 ```
 
 生成静态页面
 
-```
+``` shell
 $ hexo g #generate
 ```
 
 预览
 
-```
+``` shell
 $ hexo s #server
 ```
 
@@ -191,3 +197,4 @@ $ hexo d -g   #生成博文并部署到gighub上
 这样，通过域名就可以访问到我们的博客啦！
 
 > 注:文章中可能有很多错误，也有可能出现无法使用的情况，因为此技术博文是我的学习笔记，我只是记载一些看到或者想到东西，所以我不推荐你来按照该博文的内容进行直接使用。谢谢~~
+
