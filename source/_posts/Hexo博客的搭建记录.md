@@ -10,7 +10,7 @@ tags: hexo
 使用npm工具安装hexo
 
 ``` shell
-$ npm install -g hexo
+$ sudo npm install -g hexo
 ```
 
 初始化hexo
