@@ -44,22 +44,12 @@ Dispatcher(Context context, ExecutorService service
       Downloader downloader, Cache cache, Stats stats) {
     this.dispatcherThread = new DispatcherThread();
     this.dispatcherThread.start();
-    Utils.flushStackLocalLeaks(dispatcherThread.getLooper());
+    this.handler = new DispatcherHandler(dispatcherThread.getLooper(), this);
     //some code ...
   }
-```
-
-``` java
-//package com.squareup.picasso.Utils
-
-static void flushStackLocalLeaks(Looper looper) {
-    Handler handler = new Handler(looper) {
-        @Override public void handleMessage(Message msg) {
-        sendMessageDelayed(obtainMessage(), THREAD_LEAK_CLEANING_MS);
-        }
-    };
-    handler.sendMessageDelayed(handler.obtainMessage()
-    , THREAD_LEAK_CLEANING_MS);
+  
+  void dispatchSubmit(Action action) {
+    handler.sendMessage(handler.obtainMessage(REQUEST_SUBMIT, action));
   }
 ```
 
