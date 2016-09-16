@@ -1,7 +1,8 @@
 ---
 title: Api文档自动生成之apiDoc简介
 date: 2016-09-16 12:25:26
-tags:
+tags: 
+    - Code
 ---
 ### 简介
 [apiDoc](https://github.com/apidoc/apidoc) 是一个基于nodejs自动生成RESTful Api文档的工具，提供了api版本差异比较、自定义末班等功能。
