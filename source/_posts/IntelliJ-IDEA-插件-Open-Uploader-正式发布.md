@@ -11,5 +11,7 @@ tags:
 
 ![open_uploader_previe](http://fingerart.qiniudn.com/2016-10-12-open_uploader_preview.gif)
 
+<!--more-->
+
 源码：[https://github.com/fingerart/Open-Uploader](https://github.com/fingerart/Open-Uploader)
 
