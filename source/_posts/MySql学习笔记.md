@@ -100,6 +100,18 @@ mysql-> ALTER user MODIFY class TINYINT NOT NULL DEFAULT '0';//MODIFY不可以�
 ALTER TABLE 表名 RENAME AS 新的表名
 ```
 
+### 导出数据库
+``` bash
+// 默认导出建表+数据插入语句
+mysqldump -u 用户名 -p 密码 database > name.sql
+
+// 只导出建表语句
+mysqldump -u 用户名 -p 密码 -d database > name.sql
+
+// 只导出数据插入语句
+mysqldump -u 用户名 -p 密码 -t database > name.sql
+```
+
 ### 其它
 ``` sql
 //NULL
@@ -122,3 +134,4 @@ CREATE TABLE user(i int) YPTE(ENGINE)=MYISAM(INNODB);//新建表时为表添加�
 
 
 > 注:文章中可能有很多错误，也有可能出现无法使用的情况，因为此技术博文是我的学习笔记，我只是记载一些看到或者想到东西，所以我不推荐你来按照该博文的内容进行直接使用。谢谢~~
+

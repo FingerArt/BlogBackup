@@ -7,7 +7,7 @@ title:  指尖上的艺术
 subtitle: 学习的热情，不应为季节的变化而改变
 description: George's blog
 author: George
-email: FingerArt@sina.com
+email: george@chengguo.io
 avatar: /uploads/George.jpg
 language: zh-Hans
 timezone:
@@ -81,5 +81,5 @@ theme: next
 ## Docs: http://hexo.io/docs/deployment.html
 deploy:
   type: git
-  repository: https://github.com/fingerart/FingerArt.github.io.git
+  repository: git@github.com:fingerart/FingerArt.github.io.git
   branch: master
