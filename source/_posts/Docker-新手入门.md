@@ -9,13 +9,13 @@ tags:
 
 该文章以Mac为例。
 
-## 一、安装
+## 安装
 
 请至Docker官网下载Mac版：[https://www.docker.com/docker-mac](https://www.docker.com/docker-mac)
 
 <!--more-->
 
-## 二、创建你的第一个Web服务器
+## 创建Web服务器
 
 ``` bash
 Mac:~ fingerart$ docker run -d -p 80:80 --name webserver nginx
@@ -30,7 +30,7 @@ Status: Downloaded newer image for nginx:latest
 97503a2fbca4c2796975085c7d6e853243522c974803e23805e6d301787e9133
 ```
 
-因为是第一次使用，Docker会从Docker Hub拉取Nginx，拉取完成后你可以在浏览器访问` localhost `即可访问到Nginx的欢迎页。
+因为是第一次使用，Docker会从Docker Hub拉取Nginx，拉取完成后你可以在浏览器访问 `http://localhost` 即可访问到Nginx的欢迎页。
 注意，如果你有程序占用了80端口，请先关闭。
 
 运行 `docker ps` 你会看到正在运行的Web服务器
@@ -42,7 +42,7 @@ CONTAINER ID        IMAGE               COMMAND                  CREATED        
 
 ![](http://fingerart.qiniudn.com/image/docker-preview-nginx.png)
 
-### 三、操作
+## 操作
 
 - 开启容器: `docker start webserver`
 - 停止容器: `docker stop webwerver`
@@ -51,5 +51,7 @@ CONTAINER ID        IMAGE               COMMAND                  CREATED        
 - 移除镜像(通过IMAGE ID或名称): `docker rmi nginx`
 
 > 更多信息请查阅官方文档 [https://docs.docker.com/docker-for-mac](https://docs.docker.com/docker-for-mac)
+
+> 注:文章中可能有很多错误，也有可能出现无法使用的情况，因为此技术博文是我的学习笔记，我只是记载一些看到或者想到东西，所以我不推荐你来按照该博文的内容进行直接使用。
 
 

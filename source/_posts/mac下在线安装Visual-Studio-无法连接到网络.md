@@ -20,8 +20,10 @@ vim /usr/local/etc/proxychains.conf
 
 ```
 proxychains4 open /Volumes/Visual\ Studio\ Installer/Install\ Visual\ Studio.app
+
+//open 所在路径的应用
 ```
 
-> 注:文章中可能有很多错误，也有可能出现无法使用的情况，因为此技术博文是我的学习笔记，我只是记载一些看到或者想到东西，所以我不推荐你来按照该博文的内容进行直接使用
+> 注:文章中可能有很多错误，也有可能出现无法使用的情况，因为此技术博文是我的学习笔记，我只是记载一些看到或者想到东西，所以我不推荐你来按照该博文的内容进行直接使用。
 
 
