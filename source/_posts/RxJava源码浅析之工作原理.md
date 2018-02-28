@@ -35,6 +35,8 @@ class Observable<T> {
 }
 ```
 
+<!--more-->
+
 ## 观察者的订阅与冷启动
 
 通过 `Observable#subscribe` 完成观察者的订阅，其中可直接订阅 `Action` ，其 `subscribe` 实现会将其转换成 `ActionSubscriber`

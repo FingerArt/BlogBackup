@@ -70,6 +70,8 @@ class OnSubscribeFilter<T> {
 通过Filter可以知道通过定义一个新的OnSubscribe可以完成对原始OnSubscribe的修改、控制。
 除了定义一个全新的OnSubscribe外还可以通过Operator的方式来完成。
 
+<!--more-->
+
 ### Skip与自定义操作符
 
 自定义操作符我们可以通过`Skip` 操作符来学习。
