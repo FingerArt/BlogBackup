@@ -1,12 +1,12 @@
 ---
 title: 了解 Android HandlerThread
-date: 2016-09-13 22:47:00
+date: 2016-05-13 22:47:00
 categories: Code
 tags: 
 	- Android
 ---
 
-今天在分析 [Picasso](http://github.com/square/picasso) 源码是时看到里面有一个HandlerThread类，之前从未见过，查看HandlerThread源码并跟踪Picasso的用法，理解了这个类的作用。通俗的讲就是这个线程不是用来直接执行自己的run方法的，而是将Message发送到该线程的MessageQueen中，间接工作。
+今天在分析 [Picasso](http://github.com/square/picasso) 源码是时看到里面有一个HandlerThread类，惘然大悟，这是Android中其它线程的Handler消息机制用法。
 
 * {% post_link Handler和Message-异步消息机制-1 了解Handler消息机制1 %}
 * {% post_link Handler和Message-异步消息机制-2 了解Handler消息机制2 %}
@@ -18,57 +18,64 @@ tags:
 
 <!--more-->
 
-``` java
-@Override
-public void run() {
-   mTid = Process.myTid();
-   Looper.prepare();
-   synchronized (this) {
-       mLooper = Looper.myLooper();
-       notifyAll();
-   }
-   Process.setThreadPriority(mPriority);
-   onLooperPrepared();
-   Looper.loop();
-   mTid = -1;
+```java
+class HandlerThread extends Thread {
+    @Override
+    public void run() {
+       mTid = Process.myTid();
+       Looper.prepare();
+       synchronized (this) {
+           mLooper = Looper.myLooper();
+           notifyAll();
+       }
+       Process.setThreadPriority(mPriority);
+       onLooperPrepared();
+       Looper.loop();
+       mTid = -1;
+    }
 }
 ```
 
 该方法在 `start()` 之后执行，创建Looper、MessageQueen，然后 `loop()` 让这个Looper工作。
+
 ### Picasso源码中的使用示例
-``` java
-//package com.squareup.picasso.Dispatcher
 
-Dispatcher(Context context, ExecutorService service
-, Handler mainThreadHandler,
-      Downloader downloader, Cache cache, Stats stats) {
-    this.dispatcherThread = new DispatcherThread();
-    this.dispatcherThread.start();
-    this.handler = new DispatcherHandler(dispatcherThread.getLooper(), this);
-    //some code ...
-  }
-  
-  void dispatchSubmit(Action action) {
-    handler.sendMessage(handler.obtainMessage(REQUEST_SUBMIT, action));
-  }
-```
+```java
+package com.squareup.picasso;
 
-``` java
-//package com.squareup.picasso.Dispatcher.DispatcherHandler
-
-private static class DispatcherHandler extends Handler {
-    private final Dispatcher dispatcher;
-
-    public DispatcherHandler(Looper looper, Dispatcher dispatcher) {
-        super(looper);
-        this.dispatcher = dispatcher;
+class Dispatcher {
+    Dispatcher(Context context, ExecutorService service, Handler mainThreadHandler, Downloader downloader, Cache cache, Stats stats) {
+        this.dispatcherThread = new DispatcherThread();
+        this.dispatcherThread.start();
+        this.handler = new DispatcherHandler(dispatcherThread.getLooper(), this);
+        //some code ...
     }
 
-    @Override public void handleMessage(final Message msg) {
-        switch (msg.what) {
-          case REQUEST_SUBMIT:
-          break;
-          //some case ...
+    void dispatchSubmit(Action action) {
+        handler.sendMessage(handler.obtainMessage(REQUEST_SUBMIT, action));
+    }
+
+    private static class DispatcherHandler extends Handler {
+        private final Dispatcher dispatcher;
+
+        public DispatcherHandler(Looper looper, Dispatcher dispatcher) {
+            super(looper);
+            this.dispatcher = dispatcher;
+        }
+
+        @Override
+        public void handleMessage(final Message msg) {
+            switch (msg.what) {
+              case REQUEST_SUBMIT:
+              break;
+              //some case ...
+            }
+        }
+    }
+
+    static class DispatcherThread extends HandlerThread {
+        DispatcherThread() {
+          super(Utils.THREAD_PREFIX + DISPATCHER_THREAD_NAME, THREAD_PRIORITY_BACKGROUND);
         }
     }
 }
